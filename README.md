@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DeafSpace Floor Plan Analyzer
 
-## Getting Started
+An AI-assisted design review tool that evaluates architectural floor plans against **DeafSpace** principles — the spatial design framework developed at [Gallaudet University](https://www.gallaudet.edu/) for environments that support Deaf visual communication, signing mobility, and sensory-inclusive use.
 
-First, run the development server:
+Upload a floor plan (image or PDF) and receive a structured report across **10 design parameters**, each with observations, scores, and actionable recommendations.
+
+## Why use this tool
+
+Architects and planners often lack fast, structured feedback on Deaf-accessible spatial design before detailed review cycles. This analyzer helps you:
+
+- **Screen early designs** for sightlines, corridor width, blind corners, seating layout, and visual connectivity
+- **Prioritize fixes** with an overall score, per-parameter ratings, and a single top-priority recommendation
+- **Communicate intent** to clients and stakeholders with a consistent, evidence-based DeafSpace checklist
+- **Support inclusive practice** alongside code compliance — addressing how Deaf and hard-of-hearing users actually move, gather, and communicate in space
+
+The tool does not replace professional accessibility review or licensed architectural judgment. It accelerates awareness and dialogue around DeafSpace criteria at the concept and schematic stages.
+
+## How it works
+
+1. Upload a floor plan (JPG, PNG, WEBP, or PDF, up to 15 MB)
+2. The app sends the plan for vision-based analysis
+3. Results appear on a report page with:
+   - Building summary and overall score (1–10)
+   - Top priority fix
+   - Ten parameter cards: observation, recommendation, priority, and score
+
+### Parameters evaluated
+
+| # | Parameter |
+|---|-----------|
+| 1 | Visual connectivity & sightlines |
+| 2 | Corridor width & signing clearance |
+| 3 | Blind corner risk |
+| 4 | Seating arrangement quality |
+| 5 | Transparency & visual openness |
+| 6 | Lighting design for visual communication |
+| 7 | Gathering space quality |
+| 8 | Emergency visual accessibility |
+| 9 | Wayfinding & spatial legibility |
+| 10 | Acoustic comfort zones |
+
+## Tech stack
+
+- [Next.js](https://nextjs.org/) (App Router) + [Tailwind CSS](https://tailwindcss.com/)
+- Vision analysis via Google Gemini (`gemini-2.5-flash`) using [`@google/genai`](https://www.npmjs.com/package/@google/genai)
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 18+
+- A free [Google AI Studio](https://aistudio.google.com/app/apikey) API key
+
+### Install and run locally
+
+```bash
+git clone https://github.com/TinsaeTadesse17/DeafSpace-Floor-Plan-Analyzer.git
+cd DeafSpace-Floor-Plan-Analyzer
+npm install
+```
+
+Create `.env.local`:
+
+```env
+GEMINI_API_KEY=your_key_here
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+### Vercel (recommended)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Import this repository in [Vercel](https://vercel.com/new)
+2. Add environment variable: `GEMINI_API_KEY`
+3. Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Or with the CLI:
 
-## Deploy on Vercel
+```bash
+npx vercel --prod
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Set `GEMINI_API_KEY` in the Vercel project settings when prompted or in the dashboard.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `GEMINI_API_KEY` | Yes | Google AI Studio API key for floor plan analysis |
+
+## API usage limits (free tier)
+
+- ~10 requests per minute
+- ~250 requests per day
+- No credit card required for development and demos
+
+For sensitive or proprietary plans, use a paid API key per [Google’s data policies](https://ai.google.dev/gemini-api/docs).
+
+## Limitations
+
+- Assessments are visual/proportional; exact dimensions are not measured from drawings
+- Low-resolution or hand-sketched plans may yield weaker results
+- Multi-page PDFs: analysis focuses on the first page
+
+## License
+
+See repository license. DeafSpace design principles are attributed to Gallaudet University research and guidelines.
+
+## Contributing
+
+Issues and pull requests are welcome on [GitHub](https://github.com/TinsaeTadesse17/DeafSpace-Floor-Plan-Analyzer).
