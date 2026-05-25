@@ -2,6 +2,11 @@
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { parseAnalyzeResponse } from "@/lib/parseAnalyzeResponse";
+import {
+  isFileTooLarge,
+  MAX_UPLOAD_LABEL,
+} from "@/lib/uploadLimits";
 
 export default function UploadZone() {
   const [isDragging, setIsDragging] = useState(false);
@@ -12,6 +17,12 @@ export default function UploadZone() {
   const handleFile = useCallback(
     async (file: File) => {
       setError(null);
+
+      if (isFileTooLarge(file.size)) {
+        setError(`File must be under ${MAX_UPLOAD_LABEL}. Try compressing your floor plan.`);
+        return;
+      }
+
       setIsLoading(true);
 
       const formData = new FormData();
@@ -23,10 +34,9 @@ export default function UploadZone() {
           body: formData,
         });
 
-        const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data.error || "Analysis failed");
+        const { data, error } = await parseAnalyzeResponse(res);
+        if (error || !data) {
+          throw new Error(error || "Analysis failed");
         }
 
         sessionStorage.setItem("analysisResult", JSON.stringify(data));
@@ -99,7 +109,7 @@ export default function UploadZone() {
               Drop your floor plan here
             </p>
             <p className="text-teal-500 text-sm">
-              JPG, PNG, WEBP or PDF · Max 15MB
+              JPG, PNG, WEBP or PDF · Max {MAX_UPLOAD_LABEL}
             </p>
             <span className="mt-2 px-4 py-2 bg-teal-700 hover:bg-teal-600 text-white text-sm rounded-lg transition-colors">
               Choose File

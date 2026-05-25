@@ -2,7 +2,7 @@
 
 An AI-assisted design review tool that evaluates architectural floor plans against **DeafSpace** principles — the spatial design framework developed at [Gallaudet University](https://www.gallaudet.edu/) for environments that support Deaf visual communication, signing mobility, and sensory-inclusive use.
 
-Upload a floor plan (image or PDF) and receive a structured report across **10 design parameters**, each with observations, scores, and actionable recommendations.
+Upload a floor plan (image or PDF, up to **4 MB**) and receive a structured report across **10 design parameters**, each with observations, scores, and actionable recommendations.
 
 ## Why use this tool
 
@@ -17,7 +17,7 @@ The tool does not replace professional accessibility review or licensed architec
 
 ## How it works
 
-1. Upload a floor plan (JPG, PNG, WEBP, or PDF, up to 15 MB)
+1. Upload a floor plan (JPG, PNG, WEBP, or PDF, up to 4 MB)
 2. The app sends the plan for vision-based analysis
 3. Results appear on a report page with:
    - Building summary and overall score (1–10)
@@ -110,6 +110,7 @@ For sensitive or proprietary plans, use a paid API key per [Google’s data poli
 
 ## Limitations
 
+- **Upload size:** Hosted on Vercel, request bodies are capped at ~4.5 MB (this app enforces 4 MB). Local `npm run dev` previously allowed larger files; production uses the stricter limit.
 - Assessments are visual/proportional; exact dimensions are not measured from drawings
 - Low-resolution or hand-sketched plans may yield weaker results
 - Multi-page PDFs: analysis focuses on the first page

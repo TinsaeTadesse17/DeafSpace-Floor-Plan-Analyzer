@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { analyzeFloorPlan } from "@/lib/analyzeFloorPlan";
+import { MAX_UPLOAD_BYTES, MAX_UPLOAD_LABEL } from "@/lib/uploadLimits";
 
 export const maxDuration = 60;
 
@@ -25,9 +26,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (file.size > 15 * 1024 * 1024) {
+    if (file.size > MAX_UPLOAD_BYTES) {
       return NextResponse.json(
-        { error: "File size must be under 15MB" },
+        { error: `File size must be under ${MAX_UPLOAD_LABEL}` },
         { status: 400 }
       );
     }
