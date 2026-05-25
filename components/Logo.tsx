@@ -22,7 +22,7 @@ export default function Logo({
       />
       {showLabel && (
         <span className="font-bold text-white text-lg tracking-tight">
-          DeafSpace <span className="text-teal-400">AI</span>
+          Bridging Silence - <span className="text-teal-400">DeafSpace</span>
         </span>
       )}
     </div>

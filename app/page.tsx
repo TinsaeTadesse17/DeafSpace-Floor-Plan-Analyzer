@@ -10,7 +10,8 @@ export default function HomePage() {
           Sensory-Inclusive Architecture
         </div>
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-          DeafSpace <span className="text-teal-400">Floor Plan</span> Analyzer
+          Bridging Silence -{" "}
+          <span className="text-teal-400">DeafSpace</span> Floor Plan Analyzer
         </h1>
         <p className="text-white/50 text-base leading-relaxed">
           Upload an architectural floor plan and receive an AI-powered evaluation
@@ -48,10 +49,16 @@ export default function HomePage() {
         </div>
       </div>
 
-      <p className="mt-16 text-white/20 text-xs text-center max-w-md">
-        Based on Bridging Silence and sensory-inclusive architectural
-        research.
-      </p>
+      <footer className="mt-16 text-white/20 text-xs text-center max-w-lg space-y-1">
+        <p>
+          Based on DeafSpace Design Guidelines (Gallaudet University) and
+          sensory-inclusive architectural research.
+        </p>
+        <p className="text-white/30">
+          © {new Date().getFullYear()} Ruth Mekuria. Advisor: Architect Bisrat
+          Kifle.
+        </p>
+      </footer>
     </main>
   );
 }
