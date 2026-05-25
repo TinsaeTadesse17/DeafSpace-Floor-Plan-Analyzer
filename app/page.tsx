@@ -49,8 +49,8 @@ export default function HomePage() {
       </div>
 
       <p className="mt-16 text-white/20 text-xs text-center max-w-md">
-        Based on DeafSpace Design Guidelines (Gallaudet University) and
-        sensory-inclusive architectural research.
+        Based on Bridging Silence and sensory-inclusive architectural
+        research.
       </p>
     </main>
   );

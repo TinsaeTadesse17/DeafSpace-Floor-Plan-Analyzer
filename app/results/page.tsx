@@ -69,7 +69,7 @@ export default function ResultsPage() {
 
       <p className="mt-10 text-white/20 text-xs text-center">
         Analyzed at {new Date(result.analyzed_at).toLocaleString()} · Based on
-        DeafSpace Design Guidelines, Gallaudet University
+        Bridging Silence
       </p>
     </main>
   );
