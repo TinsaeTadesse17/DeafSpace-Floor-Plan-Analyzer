@@ -51,8 +51,8 @@ export default function HomePage() {
 
       <footer className="mt-16 text-white/20 text-xs text-center max-w-lg space-y-1">
         <p>
-          Based on DeafSpace Design Guidelines (Gallaudet University) and
-          sensory-inclusive architectural research.
+          Based on Bridging Silence and sensory-inclusive architectural
+          research.
         </p>
         <p className="text-white/30">
           © {new Date().getFullYear()} Ruth Mekuria. Advisor: Architect Bisrat
